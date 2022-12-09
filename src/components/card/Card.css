@@ -1,0 +1,7 @@
+.card_mainContainer {
+	background-image: url('../../images/bg.svg');
+}
+
+.verticalLine {
+	border-left: 2px solid #ffffff;
+}
