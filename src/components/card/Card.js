@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function Card(props) {
 	// const Item = styled(Paper)(({ theme }) => ({
@@ -20,10 +21,12 @@ function Card(props) {
 	// 	color: theme.palette.text.secondary,
 	// }));
 	const currentPrice = props.price;
+	const matches = useMediaQuery('(min-width:900px)');
+	const mobile = useMediaQuery('(max-width:600px)');
 
 	return (
 		<div className="card_mainContainer">
-			<Grid container justifyContent="space-between" rowSpacing={1.4}>
+			<Grid container justifyContent="space-between" rowSpacing={0.8}>
 				<Grid item xs={12} direction="row" container justifyContent="flex-start" alignItems="center">
 					<Box
 						component="img"
@@ -42,10 +45,10 @@ function Card(props) {
 					<Box
 						component="img"
 						sx={{
-							height: 200,
-							width: 300,
-							maxHeight: { xs: 233, md: 167 },
-							maxWidth: { xs: 350, md: 250 },
+							// height: 200,
+							width: '11vw',
+							// maxHeight: { xs: 233, md: 167 },
+							// maxWidth: { xs: 350, md: 250 },
 							color: 'primary',
 						}}
 						alt="rocket"
@@ -68,10 +71,10 @@ function Card(props) {
 								maxWidth: { xs: 350, md: 250 },
 								color: 'primary',
 							}}
-							alt="logo"
+							alt="arrow-up"
 							src={arrow}
 						/>
-						<Typography variant="h1" color="primary">
+						<Typography variant={mobile ? 'h3' : 'h1'} color="primary">
 							+144.57%
 						</Typography>
 					</Grid>
@@ -82,12 +85,12 @@ function Card(props) {
 					</Grid>
 					<Grid item xs={12} direction="row" container justifyContent="center" alignItems="center">
 						<Grid item xs={12} direction="row" container justifyContent="center" alignItems="center">
-							<Typography variant="h6" color="#ffffff">
+							<Typography variant={mobile ? 'p' : 'h6'} color="#ffffff">
 								Last Price <span className="verticalLine" /> Mark Price
 							</Typography>
 						</Grid>
 						<Grid item xs={12} direction="row" container justifyContent="center" alignItems="center">
-							<Typography variant="h6" color="secondary">
+							<Typography variant={mobile ? 'p' : 'h6'} color="secondary">
 								${currentPrice} <span className="verticalLine" /> $16500.00
 							</Typography>
 						</Grid>
@@ -95,22 +98,31 @@ function Card(props) {
 				</Grid>
 
 				<Grid item xs={3} direction="row" container justifyContent="center" alignItems="center">
-					<Box
-						component="img"
-						sx={{
-							height: 300,
-							// width: 1000,
-							// maxHeight: { xs: 233, md: 167 },
-							// maxWidth: { xs: 350, md: 250 },
-							color: 'primary',
-						}}
-						alt="coins"
-						src={coins}
-					/>
+					{matches && (
+						<Box
+							component="img"
+							sx={{
+								// height: 300,
+								width: '20vw',
+								// maxHeight: { xs: 233, md: 167 },
+								// maxWidth: { xs: 350, md: 250 },
+								color: 'primary',
+							}}
+							alt="coins"
+							src={coins}
+						/>
+					)}
 				</Grid>
 
 				<Grid item xs={12} direction="row" container justifyContent="flex-start" alignItems="center">
-					<Grid item xs={12} direction="row" container justifyContent="flex-end" alignItems="center">
+					<Grid
+						item
+						xs={12}
+						direction="row"
+						container
+						justifyContent={matches ? 'flex-end' : 'center'}
+						alignItems="center"
+					>
 						<Typography variant="p" color="#ffffff">
 							Scan QR code to know more about
 						</Typography>
@@ -118,7 +130,14 @@ function Card(props) {
 							DENSITY.
 						</Typography>
 					</Grid>
-					<Grid item xs={12} direction="row" container justifyContent="flex-end" alignItems="center">
+					<Grid
+						item
+						xs={12}
+						direction="row"
+						container
+						justifyContent={matches ? 'flex-end' : 'center'}
+						alignItems="center"
+					>
 						<Box
 							component="img"
 							sx={{
