@@ -41,16 +41,16 @@ function App() {
 	const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
 	const printRef = useRef();
 
-	// ws.onmessage = (event) => {
-	// 	let dataObject = JSON.parse(event.data);
-	// 	try {
-	// 		if ((dataObject.event = 'data')) {
-	// 			setBcPrice(dataObject.p);
-	// 		}
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	// };
+	ws.onmessage = (event) => {
+		let dataObject = JSON.parse(event.data);
+		try {
+			if ((dataObject.event = 'data')) {
+				setBcPrice(dataObject.p);
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	const handleDownloadImageJPG = async () => {
 		const element = printRef.current;
